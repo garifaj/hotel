@@ -1,0 +1,14 @@
+.container-room {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+}
+.divbtn {
+    float: right;
+    margin: 0.5rem;
+}
+.form-group {
+  margin-top: 0.5rem;
+}
