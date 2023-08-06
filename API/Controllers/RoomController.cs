@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using API.Data;
 using API.Models;
@@ -15,10 +16,12 @@ namespace API.Controllers
     public class RoomController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _env;
 
-        public RoomController(ApplicationDbContext context)
+        public RoomController(ApplicationDbContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         // GET: api/Room
@@ -119,6 +122,30 @@ namespace API.Controllers
         private bool RoomExists(int id)
         {
             return (_context.Rooms?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+
+        [Route("SaveFile")]
+        [HttpPost]
+        public JsonResult SaveFile()
+        {
+            try
+            {
+                var httpRequest = Request.Form;
+                var postedFile = httpRequest.Files[0];
+                string filename = postedFile.FileName;
+                var physicalPath= _env.ContentRootPath + "/Photos/" + filename;
+
+                using(var stream = new FileStream(physicalPath, FileMode.Create))
+                {
+                    postedFile.CopyTo(stream);
+                }
+                
+                return new JsonResult(filename);
+            }
+            catch(Exception )
+            {
+                return new JsonResult("hotelroom.jpg");
+            }
         }
     }
 }
