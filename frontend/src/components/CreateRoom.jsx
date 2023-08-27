@@ -64,6 +64,7 @@ const CreateRoom = () => {
                           value={roomNumber}
                           onChange={(e) => setRoomNumber(e.target.value)}
                           className="form-control"
+                          required
                         ></input>
                       </div>
                     </div>
@@ -76,6 +77,7 @@ const CreateRoom = () => {
                           rows={6}
                           value={description}
                           onChange={(e) => setDescription(e.target.value)}
+                          required
                         ></textarea>
                       </div>
                     </div>
@@ -89,6 +91,7 @@ const CreateRoom = () => {
                           value={price}
                           onChange={(e) => setPrice(e.target.value)}
                           className="form-control"
+                          required
                         ></input>
                       </div>
                     </div>
@@ -101,6 +104,7 @@ const CreateRoom = () => {
                           size="sm"
                           onChange={imageUpload}
                           className="form-control"
+                          required
                         ></input>
                       </div>
                     </div>

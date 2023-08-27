@@ -96,6 +96,7 @@ const EditRoom = () => {
                           value={roomNumber}
                           onChange={(e) => setRoomNumber(e.target.value)}
                           className="form-control"
+                          required
                         ></input>
                       </div>
                     </div>
@@ -108,6 +109,7 @@ const EditRoom = () => {
                           rows={6}
                           value={description}
                           onChange={(e) => setDescription(e.target.value)}
+                          required
                         ></textarea>
                       </div>
                     </div>
@@ -121,6 +123,7 @@ const EditRoom = () => {
                           value={price}
                           onChange={(e) => setPrice(e.target.value)}
                           className="form-control"
+                          required
                         ></input>
                       </div>
                     </div>
@@ -133,6 +136,7 @@ const EditRoom = () => {
                           size="sm"
                           onChange={imageUpload}
                           className="form-control"
+                          required
                         ></input>
                       </div>
                     </div>
