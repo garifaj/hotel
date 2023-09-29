@@ -1,4 +1,5 @@
 using API.Data;
+using API.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.FileProviders;
@@ -13,7 +14,9 @@ builder.Services.AddCors(options =>
     {
         builder.WithOrigins("http://localhost:5173")
                .AllowAnyHeader()
-               .AllowAnyMethod();
+               .AllowAnyMethod()
+               .AllowCredentials();
+               
     });
 });
 
@@ -21,6 +24,12 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>options.UseSqlServer(
                builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<JwtService>();
+
+
+
 
 var app = builder.Build();
 

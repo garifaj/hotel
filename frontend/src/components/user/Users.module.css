@@ -1,0 +1,10 @@
+.container_room {
+    display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+    
+  }
+  .divbtn {
+      float: right;
+      margin: 0.5rem;
+  }
