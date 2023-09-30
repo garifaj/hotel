@@ -32,10 +32,15 @@ function App() {
   useEffect(() => {
     // Fetch user data when the component mounts and when authentication changes
     fetchUserData();
-  }, [name]);
+  }, [name, isAdmin]);
   return (
     <BrowserRouter>
-      <Navbar name={name} setName={setName} />
+      <Navbar
+        name={name}
+        setName={setName}
+        isAdmin={isAdmin}
+        setIsAdmin={setIsAdmin}
+      />
       <main>
         <Routes>
           <Route path="/" exact element={<Home name={name} />} />
