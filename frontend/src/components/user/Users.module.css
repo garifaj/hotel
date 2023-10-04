@@ -5,6 +5,7 @@
     
   }
   .divbtn {
-      float: right;
+      display: flex;
+      justify-content: end;
       margin: 0.5rem;
   }

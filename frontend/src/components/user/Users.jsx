@@ -27,10 +27,10 @@ const Users = () => {
   };
 
   useEffect(() => {
-    fetchRooms();
+    fetchUsers();
   }, []);
 
-  const fetchRooms = async () => {
+  const fetchUsers = async () => {
     try {
       const response = await axios.get("http://localhost:8000/api/users");
       setUsers(response.data);
@@ -50,46 +50,48 @@ const Users = () => {
               Add New +
             </Link>
           </div>
-          <table className="table table-bordered">
-            <thead className="bg-dark text-white">
-              <tr>
-                <td>ID</td>
-                <td>Name</td>
-                <td>Email</td>
-                <td>Admin</td>
-                <td>Actions</td>
-              </tr>
-            </thead>
-            <tbody>
-              {users &&
-                users.map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.id}</td>
-                    <td>{item.name}</td>
-                    <td>{item.email}</td>
-                    <td>{item.isAdmin ? "Admin" : "User"}</td>
-                    <td>
-                      <a
-                        onClick={() => {
-                          loadEdit(item.id);
-                        }}
-                        className="btn btn-sm btn-success ms-2"
-                      >
-                        Edit
-                      </a>
-                      <a
-                        onClick={(id) => {
-                          removeFunction(item.id);
-                        }}
-                        className="btn btn-sm btn-danger ms-2"
-                      >
-                        Delete
-                      </a>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+          <div className="table-responsive">
+            <table className="table table-bordered">
+              <thead className="bg-dark text-white">
+                <tr>
+                  <td>ID</td>
+                  <td>Name</td>
+                  <td>Email</td>
+                  <td>Admin</td>
+                  <td>Actions</td>
+                </tr>
+              </thead>
+              <tbody>
+                {users &&
+                  users.map((item) => (
+                    <tr key={item.id}>
+                      <td>{item.id}</td>
+                      <td>{item.name}</td>
+                      <td>{item.email}</td>
+                      <td>{item.isAdmin ? "Admin" : "User"}</td>
+                      <td>
+                        <a
+                          onClick={() => {
+                            loadEdit(item.id);
+                          }}
+                          className="btn btn-sm btn-success ms-2"
+                        >
+                          Edit
+                        </a>
+                        <a
+                          onClick={(id) => {
+                            removeFunction(item.id);
+                          }}
+                          className="btn btn-sm btn-danger ms-2"
+                        >
+                          Delete
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

@@ -29,9 +29,9 @@ const Login = (props) => {
       return;
     }
 
-    const content = await response.json();
+    const data = await response.json();
     navigate("/");
-    props.setName(content.name);
+    props.setName(data.name);
   };
 
   return (

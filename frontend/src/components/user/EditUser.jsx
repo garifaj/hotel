@@ -11,11 +11,11 @@ const EditUser = () => {
       .then((res) => {
         return res.json();
       })
-      .then((resp) => {
-        setId(resp.id);
-        setName(resp.name);
-        setEmail(resp.email);
-        setIsAdmin(resp.isAdmin);
+      .then((data) => {
+        setId(data.id);
+        setName(data.name);
+        setEmail(data.email);
+        setIsAdmin(data.isAdmin);
       })
       .catch((err) => {
         console.log(err.message);

@@ -23,9 +23,9 @@ function App() {
     });
 
     if (response.ok) {
-      const content = await response.json();
-      setName(content.name);
-      setIsAdmin(content.isAdmin);
+      const data = await response.json();
+      setName(data.name);
+      setIsAdmin(data.isAdmin);
     }
   };
 

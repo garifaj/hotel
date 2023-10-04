@@ -2,7 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../room/CreateRoom.module.css";
-
+import "react-quill/dist/quill.snow.css";
+import Editor from "./Editor";
 const CreateRoom = () => {
   const [roomNumber, setRoomNumber] = useState("");
   const [description, setDescription] = useState("");
@@ -73,13 +74,7 @@ const CreateRoom = () => {
                     <div className="col-lg-12">
                       <div className={styles.form_group}>
                         <label>Description</label>
-                        <textarea
-                          className="form-control"
-                          rows={6}
-                          value={description}
-                          onChange={(e) => setDescription(e.target.value)}
-                          required
-                        ></textarea>
+                        <Editor onChange={setDescription} value={description} />
                       </div>
                     </div>
 

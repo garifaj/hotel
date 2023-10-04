@@ -71,7 +71,7 @@ const Navbar = (props) => {
     menu = (
       <ul className="navbar-nav mx-auto">
         <li className="nav-item me-3">
-          <Link to="/rooms" className="nav-link">
+          <Link to="/users" className="nav-link">
             My bookings
           </Link>
         </li>

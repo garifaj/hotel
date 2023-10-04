@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import styles from "../room/EditRoom.module.css";
+
+import "react-quill/dist/quill.snow.css";
+import Editor from "./Editor";
 
 const EditRoom = () => {
   const { roomid } = useParams();
@@ -14,12 +14,12 @@ const EditRoom = () => {
       .then((res) => {
         return res.json();
       })
-      .then((resp) => {
-        setId(resp.id);
-        setRoomNumber(resp.roomNumber);
-        setDescription(resp.description);
-        setPrice(resp.price);
-        setImage(resp.image);
+      .then((data) => {
+        setId(data.id);
+        setRoomNumber(data.roomNumber);
+        setDescription(data.description);
+        setPrice(data.price);
+        setImage(data.image);
       })
       .catch((err) => {
         console.log(err.message);
@@ -105,13 +105,7 @@ const EditRoom = () => {
                     <div className="col-lg-12">
                       <div className={styles.form_group}>
                         <label>Description</label>
-                        <textarea
-                          className="form-control"
-                          rows={6}
-                          value={description}
-                          onChange={(e) => setDescription(e.target.value)}
-                          required
-                        ></textarea>
+                        <Editor onChange={setDescription} value={description} />
                       </div>
                     </div>
 
