@@ -21,7 +21,7 @@ const CreateRoom = () => {
       headers: { "content-type": "application/json" },
       body: JSON.stringify(roomdata),
     })
-      .then((res) => {
+      .then(() => {
         alert("Saved successfully.");
         navigate("/rooms");
       })
@@ -102,6 +102,17 @@ const CreateRoom = () => {
                           className="form-control"
                           required
                         ></input>
+                      </div>
+                      <div
+                        className="col-lg-12"
+                        style={{ marginTop: "0.5rem" }}
+                      >
+                        {image && (
+                          <img
+                            src={`http://localhost:8000/Photos/${image}`}
+                            alt="Room Image" // You can define a CSS class for styling if needed
+                          />
+                        )}
                       </div>
                     </div>
                     <div className="col-lg-12">

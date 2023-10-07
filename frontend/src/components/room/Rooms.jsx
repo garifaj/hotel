@@ -68,22 +68,19 @@ const Rooms = () => {
                     <tr key={item.id}>
                       <td>{item.id}</td>
                       <td>{item.roomNumber}</td>
-                      <div
-                        className="descriptioncell"
-                        style={{
-                          maxHeight: "10rem",
-                          maxWidth: "40rem",
-                          overflow: "auto",
-                        }}
-                      >
-                        <td>
-                          <div
-                            dangerouslySetInnerHTML={{
-                              __html: item.description,
-                            }}
-                          ></div>
-                        </td>
-                      </div>
+
+                      <td>
+                        <div
+                          style={{
+                            maxWidth: "40rem",
+                            maxHeight: "10rem",
+                            overflow: "auto",
+                          }}
+                          dangerouslySetInnerHTML={{
+                            __html: item.description,
+                          }}
+                        ></div>
+                      </td>
 
                       <td>{item.price} $</td>
                       <td>{item.image}</td>

@@ -5,27 +5,26 @@ import styles from "../user/EditUser.module.css";
 const EditUser = () => {
   const { userid } = useParams();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    fetch("http://localhost:8000/api/users/" + userid)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setId(data.id);
-        setName(data.name);
-        setEmail(data.email);
-        setIsAdmin(data.isAdmin);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }, []);
-
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/api/users/" + userid);
+      const data = await response.json();
+      setId(data.id);
+      setName(data.name);
+      setEmail(data.email);
+      setIsAdmin(data.isAdmin);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handlesubmit = (e) => {
     e.preventDefault();

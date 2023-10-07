@@ -8,3 +8,10 @@
 .form_group {
     margin-top: 0.5rem;
   }
+
+  img {
+    height: 300px;
+    width: 300px;
+    max-width: 100%;
+    
+  }

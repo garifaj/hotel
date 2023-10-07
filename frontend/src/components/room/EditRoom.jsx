@@ -8,29 +8,29 @@ import Editor from "./Editor";
 const EditRoom = () => {
   const { roomid } = useParams();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    fetch("http://localhost:8000/api/room/" + roomid)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setId(data.id);
-        setRoomNumber(data.roomNumber);
-        setDescription(data.description);
-        setPrice(data.price);
-        setImage(data.image);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }, []);
-
   const [id, setId] = useState("");
   const [roomNumber, setRoomNumber] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/api/room/" + roomid);
+      const data = await response.json();
+      setId(data.id);
+      setRoomNumber(data.roomNumber);
+      setDescription(data.description);
+      setPrice(data.price);
+      setImage(data.image);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handlesubmit = (e) => {
     e.preventDefault();
@@ -56,13 +56,16 @@ const EditRoom = () => {
     const formData = new FormData();
     formData.append("file", e.target.files[0], e.target.files[0].name);
 
-    fetch("https://localhost:7183/api/" + "room/savefile", {
+    fetch("http://localhost:8000/api/room/savefile", {
       method: "POST",
       body: formData,
     })
       .then((res) => res.json())
       .then((data) => {
         setImage(data);
+      })
+      .catch((error) => {
+        console.error("Image Upload Error:", error);
       });
   };
 
@@ -83,8 +86,8 @@ const EditRoom = () => {
                         <label>ID</label>
                         <input
                           value={id}
-                          disabled="disabled"
                           className="form-control"
+                          disabled
                         ></input>
                       </div>
                     </div>
@@ -134,6 +137,15 @@ const EditRoom = () => {
                         ></input>
                       </div>
                     </div>
+                    <div className="col-lg-12" style={{ marginTop: "0.5rem" }}>
+                      {image && (
+                        <img
+                          src={`http://localhost:8000/Photos/${image}`}
+                          alt="Room Image"
+                        />
+                      )}
+                    </div>
+
                     <div className="col-lg-12">
                       <div
                         className={styles.form_group}
