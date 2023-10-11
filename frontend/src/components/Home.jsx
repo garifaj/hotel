@@ -1,7 +1,12 @@
 import React from "react";
+import ImageSlider from "./ImageSlider";
 
-const Home = (props) => {
-  return <div>{props.name ? "Hi " + props.name : "You are not logged in"}</div>;
+const Home = () => {
+  return (
+    <div>
+      <ImageSlider />
+    </div>
+  );
 };
 
 export default Home;
