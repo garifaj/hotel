@@ -42,19 +42,21 @@ const Navbar = (props) => {
     );
   } else {
     authButtons = (
-      <ul className="navbar-nav  mb-2 ">
-        <li className="nav-item active">
-          <Link to="/login" className="nav-link" onClick={logout}>
-            Logout
-          </Link>
-        </li>
-      </ul>
+      <div className="ml-auto d-flex flex-column flex-md-row">
+        <ul className="navbar-nav mx-auto mb-2 ">
+          <li className="nav-item active">
+            <Link to="/login" className="nav-link" onClick={logout}>
+              Logout
+            </Link>
+          </li>
+        </ul>
+      </div>
     );
   }
 
   if (props.isAdmin) {
     menu = (
-      <ul className="navbar-nav mx-auto">
+      <ul className="navbar-nav mx-auto" style={{ alignItems: "center" }}>
         <li className="nav-item me-3">
           <Link to="/rooms" className="nav-link">
             Rooms
@@ -98,10 +100,11 @@ const Navbar = (props) => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div
-          className="collapse navbar-collapse justify-content-center"
+          className="collapse navbar-collapse  justify-content-center"
           id="navbarNav"
         >
-          {menu}
+          <div className="mx-auto d-flex flex-column flex-md-row">{menu}</div>
+
           {authButtons}
         </div>
       </div>
