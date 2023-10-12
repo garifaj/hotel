@@ -200,3 +200,63 @@ h5 {
     display: none;
   }
 }
+
+.services {
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+
+.services_title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.services_title span {
+  font-size: 14px;
+  font-weight: 300;
+  margin-bottom: 15px;
+  display: block;
+  color: #009dff;
+}
+.services_title h3 {
+  font-size: 46px;
+  font-weight: 400;
+  line-height: 56px;
+  color: #1f1f1f;
+  text-align: center;
+}
+
+.cards {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 50px;
+}
+.cards h4 {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.cards p {
+  max-width: 15rem;
+  color: #4d4d4d;
+  font-weight: 300;
+  text-align: center;
+}
+.cards img {
+  display: block;
+  margin: 0 auto;
+}
+
+@media (max-width: 62rem) {
+  .cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+  }
+  .cards div {
+    padding-top: 20px;
+  }
+}

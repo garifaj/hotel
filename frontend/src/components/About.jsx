@@ -3,7 +3,7 @@ import styles from "./About.module.css";
 
 const About = () => {
   return (
-    <div>
+    <>
       <div className={styles.about_area}>
         <div className="container">
           <div className="row">
@@ -41,7 +41,88 @@ const About = () => {
           </div>
         </div>
       </div>
-    </div>
+
+      <section className={styles.services}>
+        <div className="container">
+          <div className={styles.services_title}>
+            <span>What we do</span>
+            <h3>Discover our services</h3>
+          </div>
+
+          <div className={styles.cards}>
+            <div>
+              <img
+                src="http://localhost:8000/Photos/cocktail-svgrepo-com.svg"
+                alt=""
+                style={{ height: "50px", width: "50px" }}
+              />
+              <h4>Bar & drinks</h4>
+              <p>
+                Socialize in style at our well-stocked bar, offering handcrafted
+                cocktails and a memorable setting for your evenings
+              </p>
+            </div>
+            <div>
+              <img
+                src="http://localhost:8000/Photos/bed-double-svgrepo-com.svg"
+                alt=""
+                style={{ height: "50px", width: "50px" }}
+              />
+              <h4>Cozy rooms</h4>
+              <p>
+                Experience ultimate comfort in our cozy rooms, where inviting
+                spaces provide the perfect retreat for a restful stay.
+              </p>
+            </div>
+            <div>
+              <img
+                src="http://localhost:8000/Photos/parking-car-svgrepo-com.svg"
+                alt=""
+                style={{ height: "50px", width: "50px" }}
+              />
+              <h4>Parking</h4>
+              <p>
+                Enjoy worry-free travels with our secure and accessible parking
+                facilities, ensuring peace of mind during your stay.
+              </p>
+            </div>
+            <div>
+              <img
+                src="http://localhost:8000/Photos/room-service-2-svgrepo-com.svg"
+                alt=""
+                style={{ height: "50px", width: "50px" }}
+              />
+              <h4>Room service</h4>
+              <p>
+                Indulge in the convenience of room service, offering delectable
+                dining and refreshing beverages right at your doorstep, ensuring
+                an exceptional stay.
+              </p>
+            </div>
+          </div>
+          {/* <img
+            src="http://localhost:8000/Photos/cocktail-svgrepo-com.svg"
+            alt=""
+            style={{ height: "50px", width: "50px" }}
+          />
+          <img
+            src="http://localhost:8000/Photos/bed-double-svgrepo-com.svg"
+            alt=""
+            style={{ height: "50px", width: "50px" }}
+          />
+          <img
+            src="http://localhost:8000/Photos/parking-car-svgrepo-com.svg"
+            alt=""
+            style={{ height: "50px", width: "50px" }}
+          />
+          <img
+            src="http://localhost:8000/Photos/wifi-1020-svgrepo-com.svg"
+            alt=""
+            style={{ height: "50px", width: "50px" }}
+          /> */}
+        </div>
+      </section>
+    </>
   );
 };
 

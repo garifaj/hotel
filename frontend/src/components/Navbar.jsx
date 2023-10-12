@@ -26,15 +26,11 @@ const Navbar = (props) => {
           to="/login"
           className="btn btn-md ms-1 rounded-4 py-1 px-3"
           style={{
-            backgroundColor: "rgba(104, 85, 224, 1)",
+            backgroundColor: "#009dff",
             color: "white",
           }}
-          onMouseEnter={(e) =>
-            (e.target.style.backgroundColor = "rgb(66, 50, 168)")
-          }
-          onMouseLeave={(e) =>
-            (e.target.style.backgroundColor = "rgba(104, 85, 224, 1)")
-          }
+          onMouseEnter={(e) => (e.target.style.backgroundColor = "#007ecc")}
+          onMouseLeave={(e) => (e.target.style.backgroundColor = "#009dff")}
         >
           Login
         </Link>
