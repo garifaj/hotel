@@ -42,7 +42,7 @@ const Users = () => {
     <div className={styles.container_room}>
       <div className="card">
         <div className="card-title">
-          <h2>Users table</h2>
+          <h2 style={{ textAlign: "center" }}>Users table</h2>
         </div>
         <div className="card-body">
           <div className={styles.divbtn}>

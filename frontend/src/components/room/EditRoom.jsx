@@ -9,6 +9,7 @@ const EditRoom = () => {
   const { roomid } = useParams();
   const navigate = useNavigate();
   const [id, setId] = useState("");
+  const [title, setTitle] = useState("");
   const [roomNumber, setRoomNumber] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -19,6 +20,7 @@ const EditRoom = () => {
       const response = await fetch("http://localhost:8000/api/room/" + roomid);
       const data = await response.json();
       setId(data.id);
+      setTitle(data.title);
       setRoomNumber(data.roomNumber);
       setDescription(data.description);
       setPrice(data.price);
@@ -34,7 +36,7 @@ const EditRoom = () => {
 
   const handlesubmit = (e) => {
     e.preventDefault();
-    const roomdata = { id, roomNumber, description, price, image };
+    const roomdata = { id, title, roomNumber, description, price, image };
 
     fetch("http://localhost:8000/api/room/" + roomid, {
       method: "PUT",
@@ -88,6 +90,19 @@ const EditRoom = () => {
                           value={id}
                           className="form-control"
                           disabled
+                        ></input>
+                      </div>
+                    </div>
+                    <div className="col-lg-12">
+                      <div className={styles.form_group}>
+                        <label>Title</label>
+                        <input
+                          type="text"
+                          placeholder="Enter room title"
+                          value={title}
+                          onChange={(e) => setTitle(e.target.value)}
+                          className="form-control"
+                          required
                         ></input>
                       </div>
                     </div>

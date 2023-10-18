@@ -94,32 +94,12 @@ const About = () => {
               />
               <h4>Room service</h4>
               <p>
-                Indulge in the convenience of room service, offering delectable
-                dining and refreshing beverages right at your doorstep, ensuring
-                an exceptional stay.
+                Experience convenience with Room Service, offering delightful
+                dining and beverages delivered to your room for an exceptional
+                stay
               </p>
             </div>
           </div>
-          {/* <img
-            src="http://localhost:8000/Photos/cocktail-svgrepo-com.svg"
-            alt=""
-            style={{ height: "50px", width: "50px" }}
-          />
-          <img
-            src="http://localhost:8000/Photos/bed-double-svgrepo-com.svg"
-            alt=""
-            style={{ height: "50px", width: "50px" }}
-          />
-          <img
-            src="http://localhost:8000/Photos/parking-car-svgrepo-com.svg"
-            alt=""
-            style={{ height: "50px", width: "50px" }}
-          />
-          <img
-            src="http://localhost:8000/Photos/wifi-1020-svgrepo-com.svg"
-            alt=""
-            style={{ height: "50px", width: "50px" }}
-          /> */}
         </div>
       </section>
     </>

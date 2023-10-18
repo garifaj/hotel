@@ -6,6 +6,7 @@ import "react-quill/dist/quill.snow.css";
 import Editor from "./Editor";
 const CreateRoom = () => {
   const [roomNumber, setRoomNumber] = useState("");
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
@@ -14,7 +15,7 @@ const CreateRoom = () => {
 
   const handlesubmit = (e) => {
     e.preventDefault();
-    const roomdata = { roomNumber, description, price, image };
+    const roomdata = { roomNumber, title, description, price, image };
 
     fetch("http://localhost:8000/api/room/", {
       method: "POST",
@@ -57,6 +58,19 @@ const CreateRoom = () => {
                 </div>
                 <div className="card-body">
                   <div className="row">
+                    <div className="col-lg-12">
+                      <div className={styles.form_group}>
+                        <label>Title</label>
+                        <input
+                          type="text"
+                          placeholder="Enter room title"
+                          value={title}
+                          onChange={(e) => setTitle(e.target.value)}
+                          className="form-control"
+                          required
+                        ></input>
+                      </div>
+                    </div>
                     <div className="col-lg-12">
                       <div className={styles.form_group}>
                         <label>Room Number</label>

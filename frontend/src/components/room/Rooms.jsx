@@ -42,7 +42,7 @@ const Rooms = () => {
     <div className={styles.container_room}>
       <div className="card">
         <div className="card-title">
-          <h2>Rooms table</h2>
+          <h2 style={{ textAlign: "center" }}>Rooms table</h2>
         </div>
         <div className="card-body">
           <div className={styles.divbtn}>
@@ -55,6 +55,7 @@ const Rooms = () => {
               <thead className="bg-dark text-white">
                 <tr>
                   <td>ID</td>
+                  <td>Title</td>
                   <td>Room number</td>
                   <td>Description</td>
                   <td>Price</td>
@@ -67,6 +68,7 @@ const Rooms = () => {
                   rooms.map((item) => (
                     <tr key={item.id}>
                       <td>{item.id}</td>
+                      <td>{item.title}</td>
                       <td>{item.roomNumber}</td>
 
                       <td>
