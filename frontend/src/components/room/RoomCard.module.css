@@ -54,9 +54,14 @@
   color: #1f1f1f;
   text-decoration: none;
 }
+
+.room .text h3 a:hover {
+  color: #009dff;
+}
 .room .text span.price {
   font-size: 26px;
   color: #000000;
+  font-weight: 400;
   margin-right: 4px;
   position: relative;
 }
@@ -81,29 +86,4 @@
 .room_img {
   height: 250px;
   width: 100%;
-}
-
-.room-single h2 {
-  font-size: 28px;
-}
-
-.room-single .loc {
-  margin-right: 10px;
-}
-.room-single .loc a {
-  color: #999999;
-}
-
-.room-single ul {
-  margin: 0;
-  padding: 0;
-}
-.room-single ul li {
-  list-style: none;
-  margin-bottom: 10px;
-}
-.room-img {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
 }

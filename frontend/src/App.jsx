@@ -12,6 +12,7 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import { useEffect, useState } from "react";
 import Home from "./components/Home";
+import RoomDetails from "./components/room/RoomDetails";
 
 function App() {
   const [name, setName] = useState("");
@@ -47,6 +48,10 @@ function App() {
           <Route path="/rooms" element={<Rooms />}></Route>
           <Route path="/rooms/create" element={<CreateRoom />}></Route>
           <Route path="/rooms/edit/:roomid" element={<EditRoom />}></Route>
+          <Route
+            path="/rooms/details/:roomid"
+            element={<RoomDetails />}
+          ></Route>
           <Route path="/users" element={<Users />}></Route>
           <Route path="/users/edit/:userid" element={<EditUser />}></Route>
           <Route path="/users/create" element={<CreateUser />}></Route>

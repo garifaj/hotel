@@ -84,7 +84,7 @@ const Rooms = () => {
                         ></div>
                       </td>
 
-                      <td>{item.price} $</td>
+                      <td>{item.price.toFixed(2)} $</td>
                       <td>{item.image}</td>
                       <td>
                         <a

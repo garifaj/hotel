@@ -30,10 +30,13 @@ const RoomCard = () => {
           <div className="row">
             {rooms &&
               rooms.map((room) => (
-                <div className="cols-sm col-md-6 col-lg-4 ftco-animate fadeInUp ftco-animated">
+                <div
+                  className="cols-sm col-md-6 col-lg-4 ftco-animate fadeInUp ftco-animated"
+                  key={room.id}
+                >
                   <div className={styles.room}>
                     <Link
-                      to={"/"}
+                      to={"/rooms/details/" + room.id}
                       className={`${styles.img} d-flex justify-content-center align-items-center`}
                     >
                       <img
@@ -44,7 +47,9 @@ const RoomCard = () => {
                     </Link>
                     <div className={`${styles.text} p-3 text-center`}>
                       <h3 className="mb-3 mt-2">
-                        <Link to={"/"}>{room.title}</Link>
+                        <Link to={"/rooms/details/" + room.id}>
+                          {room.title}
+                        </Link>
                       </h3>
                       <p>
                         <span className={`${styles.price} mr-2`}>
@@ -55,8 +60,11 @@ const RoomCard = () => {
                       </p>
                       <hr />
                       <p className="pt-1">
-                        <Link to={"/"} className={styles.btn_custom}>
-                          View Room Details{" "}
+                        <Link
+                          to={"/rooms/details/" + room.id}
+                          className={styles.btn_custom}
+                        >
+                          View room details{" "}
                           <span className="icon-long-arrow-right"></span>
                         </Link>
                       </p>
