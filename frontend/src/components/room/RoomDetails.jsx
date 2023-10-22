@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "../room/RoomDetails.module.css";
+import Footer from "../Footer";
 
 const RoomDetails = () => {
   const [room, setRoom] = useState(null);
@@ -71,6 +72,7 @@ const RoomDetails = () => {
           <p>Loading...</p>
         </div>
       )}
+      <Footer />
     </>
   );
 };
