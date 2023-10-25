@@ -3,6 +3,7 @@ import ImageSlider from "./ImageSlider";
 import About from "./About";
 import RoomCard from "./room/RoomCard";
 import Footer from "./Footer";
+import BlogCard from "./blog/BlogCard";
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       <ImageSlider />
       <About />
       <RoomCard />
+      <BlogCard />
       <Footer />
     </div>
   );
