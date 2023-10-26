@@ -5,7 +5,7 @@ import axios from "axios";
 import { useEffect } from "react";
 
 const BlogCard = () => {
-  const [blogs, setBlogs] = useState(null);
+  const [blogs, setBlogs] = useState([]);
 
   const fetchBlogs = async () => {
     try {
@@ -19,6 +19,8 @@ const BlogCard = () => {
     fetchBlogs();
   }, []);
 
+  const sortedBlogs = [...blogs].sort((a, b) => b.id - a.id);
+
   return (
     <>
       <section className={styles.blogcard}>
@@ -27,11 +29,11 @@ const BlogCard = () => {
             <span>Blogs</span>
             <h3>Our blogs</h3>
           </div>
-          <div className="row">
+          <div className="row flex-nowrap overflow-auto">
             {blogs &&
-              blogs.map((blog) => (
+              sortedBlogs.map((blog) => (
                 <div
-                  className="cols-sm col-md-6 col-lg-4 ftco-animate fadeInUp ftco-animated"
+                  className={`col-sm-8 col-md-6 col-lg-4 ftco-animate fadeInUp ftco-animated ${styles.custom_width}`}
                   key={blog.id}
                 >
                   <div className={styles.blog}>

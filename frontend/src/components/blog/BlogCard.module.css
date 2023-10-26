@@ -64,3 +64,9 @@
 .blog .text h3 a:hover {
   color: #009dff;
 }
+
+@media (max-width: 575.98px) {
+  .custom_width {
+    width: 90%;
+  }
+}
