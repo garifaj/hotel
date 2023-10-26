@@ -16,6 +16,7 @@ import RoomDetails from "./components/room/RoomDetails";
 import Blogs from "./components/blog/Blogs";
 import CreateBlog from "./components/blog/CreateBlog";
 import EditBlog from "./components/blog/EditBlog";
+import BlogDetails from "./components/blog/BlogDetails";
 
 function App() {
   const [name, setName] = useState("");
@@ -59,6 +60,10 @@ function App() {
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blogs/create" element={<CreateBlog />}></Route>
           <Route path="/blogs/edit/:blogid" element={<EditBlog />}></Route>
+          <Route
+            path="/blogs/details/:blogid"
+            element={<BlogDetails />}
+          ></Route>
 
           <Route path="/users" element={<Users />}></Route>
           <Route path="/users/edit/:userid" element={<EditUser />}></Route>

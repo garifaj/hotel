@@ -1,0 +1,39 @@
+.blogsection {
+  background-color: #f8f9fa;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+}
+
+h2 {
+  font-size: 38px;
+  color: #1f1f1f;
+  font-weight: 400;
+  max-inline-size: 90%;
+  text-align: center;
+}
+
+.image {
+  margin: 3rem 0rem;
+  display: block;
+  height: 500px;
+}
+.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.content {
+  padding-bottom: 3rem;
+}
+.content p {
+  color: #4d4d4d;
+  line-height: 1.7;
+  font-size: 15px;
+  margin: 20px 0;
+}

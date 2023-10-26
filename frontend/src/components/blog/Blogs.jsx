@@ -67,8 +67,8 @@ const Blogs = () => {
                   blogs.map((item) => (
                     <tr key={item.id}>
                       <td>{item.id}</td>
-                      <td style={{ maxWidth: "15rem" }}>{item.title}</td>
-                      <td style={{ maxWidth: "20rem" }}>{item.summary}</td>
+                      <td style={{ maxWidth: "10rem" }}>{item.title}</td>
+                      <td style={{ maxWidth: "15rem" }}>{item.summary}</td>
 
                       <td>
                         <div
