@@ -68,6 +68,11 @@ const Navbar = (props) => {
             Blogs
           </Link>
         </li>
+        <li className="nav-item me-3">
+          <Link to="/allbookings" className="nav-link">
+            Bookings
+          </Link>
+        </li>
       </ul>
     );
   } else {

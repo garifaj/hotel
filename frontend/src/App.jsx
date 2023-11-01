@@ -17,6 +17,7 @@ import Blogs from "./components/blog/Blogs";
 import CreateBlog from "./components/blog/CreateBlog";
 import EditBlog from "./components/blog/EditBlog";
 import BlogDetails from "./components/blog/BlogDetails";
+import BookingTable from "./components/booking/BookingTable";
 
 function App() {
   const [name, setName] = useState("");
@@ -38,6 +39,7 @@ function App() {
     // Fetch user data when the component mounts and when authentication changes
     fetchUserData();
   }, [name, isAdmin]);
+
   return (
     <BrowserRouter>
       <Navbar
@@ -48,28 +50,30 @@ function App() {
       />
       <main>
         <Routes>
-          <Route path="/" exact element={<Home name={name} />} />
-          <Route path="/rooms" element={<Rooms />}></Route>
-          <Route path="/rooms/create" element={<CreateRoom />}></Route>
-          <Route path="/rooms/edit/:roomid" element={<EditRoom />}></Route>
+          <Route path="/" element={<Home name={name} />} />
+          {isAdmin && (
+            <>
+              <Route path="/rooms" element={<Rooms />} />
+              <Route path="/rooms/create" element={<CreateRoom />} />
+              <Route path="/rooms/edit/:roomid" element={<EditRoom />} />
+
+              <Route path="/blogs" element={<Blogs />} />
+              <Route path="/blogs/create" element={<CreateBlog />} />
+              <Route path="/blogs/edit/:blogid" element={<EditBlog />} />
+
+              <Route path="/users" element={<Users />} />
+              <Route path="/users/edit/:userid" element={<EditUser />} />
+              <Route path="/users/create" element={<CreateUser />} />
+              <Route path="allbookings" element={<BookingTable />} />
+            </>
+          )}
+          <Route path="/login" element={<Login setName={setName} />} />
+          <Route path="/signup" element={<Signup />} />{" "}
           <Route
             path="/rooms/details/:roomid"
-            element={<RoomDetails />}
-          ></Route>
-
-          <Route path="/blogs" element={<Blogs />} />
-          <Route path="/blogs/create" element={<CreateBlog />}></Route>
-          <Route path="/blogs/edit/:blogid" element={<EditBlog />}></Route>
-          <Route
-            path="/blogs/details/:blogid"
-            element={<BlogDetails />}
-          ></Route>
-
-          <Route path="/users" element={<Users />}></Route>
-          <Route path="/users/edit/:userid" element={<EditUser />}></Route>
-          <Route path="/users/create" element={<CreateUser />}></Route>
-          <Route path="/login" element={<Login setName={setName} />}></Route>
-          <Route path="/signup" element={<Signup />}></Route>
+            element={<RoomDetails name={name} />}
+          />
+          <Route path="/blogs/details/:blogid" element={<BlogDetails />} />
         </Routes>
       </main>
     </BrowserRouter>

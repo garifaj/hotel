@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "../room/RoomDetails.module.css";
 import Footer from "../Footer";
+import BookingWidget from "../booking/BookingWidget";
 
-const RoomDetails = () => {
+const RoomDetails = (props) => {
+  const { name } = props;
   const [room, setRoom] = useState(null);
   const { roomid } = useParams();
 
@@ -62,7 +64,7 @@ const RoomDetails = () => {
                 </div>
               </div>
               <div className="col-lg-4">
-                <h1>Booking form</h1>
+                <BookingWidget name={name} room={room} />
               </div>
             </div>
           </div>

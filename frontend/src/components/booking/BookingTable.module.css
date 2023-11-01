@@ -1,0 +1,11 @@
+.container_room {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.divbtn {
+  display: flex;
+  justify-content: end;
+  margin: 0.5rem;
+}
