@@ -36,6 +36,15 @@ namespace API.Controllers
         {
             try
             {
+                var existingBooking = _context.Bookings
+            .Where(b => b.RoomId == booking.RoomId)
+            .Where(b => b.CheckIn < booking.CheckOut && b.CheckOut > booking.CheckIn)
+            .FirstOrDefault();
+
+                if (existingBooking != null)
+                {
+                    return BadRequest(new { message = "Room is already booked for the selected dates." });
+                }
                 // Retrieve the user's ID from the JWT token
                 var jwt = Request.Cookies["jwt"];
 

@@ -96,7 +96,7 @@ const Rooms = () => {
                           Edit
                         </a>
                         <a
-                          onClick={(id) => {
+                          onClick={() => {
                             removeFunction(item.id);
                           }}
                           className="btn btn-sm btn-danger ms-2"

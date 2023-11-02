@@ -7,6 +7,21 @@ import styles from "../booking/BookingTable.module.css";
 const BookingTable = () => {
   const [bookings, setBookings] = useState(null);
 
+  const removeFunction = (id) => {
+    if (window.confirm("Do you want to delete this room?")) {
+      fetch("http://localhost:8000/api/bookings/" + id, {
+        method: "DELETE",
+      })
+        .then(() => {
+          alert("Removed successfully.");
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    }
+  };
+
   useEffect(() => {
     fetchRooms();
   }, []);
@@ -38,6 +53,7 @@ const BookingTable = () => {
                   <td>Room title</td>
                   <td>Check in / Check out</td>
                   <td>Total price</td>
+                  <td>Actions</td>
                 </tr>
               </thead>
               <tbody>
@@ -59,6 +75,16 @@ const BookingTable = () => {
                         {new Date(item.checkOut).toLocaleDateString()}
                       </td>
                       <td>{item.price.toFixed(2)} $</td>
+                      <td>
+                        <a
+                          onClick={(id) => {
+                            removeFunction(item.id);
+                          }}
+                          className="btn btn-sm btn-danger ms-2"
+                        >
+                          Delete
+                        </a>
+                      </td>
                     </tr>
                   ))}
               </tbody>
