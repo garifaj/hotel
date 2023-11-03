@@ -18,8 +18,10 @@ import CreateBlog from "./components/blog/CreateBlog";
 import EditBlog from "./components/blog/EditBlog";
 import BlogDetails from "./components/blog/BlogDetails";
 import BookingTable from "./components/booking/BookingTable";
+import MyBookings from "./components/booking/MyBookings";
 
 function App() {
+  const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
   const fetchUserData = async () => {
@@ -32,13 +34,14 @@ function App() {
       const data = await response.json();
       setName(data.name);
       setIsAdmin(data.isAdmin);
+      setId(data.id);
     }
   };
 
   useEffect(() => {
     // Fetch user data when the component mounts and when authentication changes
     fetchUserData();
-  }, [name, isAdmin]);
+  }, [name, isAdmin, id]);
 
   return (
     <BrowserRouter>
@@ -47,10 +50,11 @@ function App() {
         setName={setName}
         isAdmin={isAdmin}
         setIsAdmin={setIsAdmin}
+        setId={setId}
       />
       <main>
         <Routes>
-          <Route path="/" element={<Home name={name} />} />
+          <Route path="/" element={<Home />} />
           {isAdmin && (
             <>
               <Route path="/rooms" element={<Rooms />} />
@@ -74,6 +78,7 @@ function App() {
             element={<RoomDetails name={name} />}
           />
           <Route path="/blogs/details/:blogid" element={<BlogDetails />} />
+          <Route path="/mybookings" element={<MyBookings id={id} />} />
         </Routes>
       </main>
     </BrowserRouter>

@@ -1,0 +1,46 @@
+.room_img {
+  width: 100%;
+}
+.title h4 {
+  padding-left: 1rem;
+  padding-top: 1rem;
+}
+.dates {
+  display: flex;
+  padding-top: 3rem;
+  gap: 0.4rem;
+  color: #999;
+}
+
+.checkIn {
+  display: flex;
+  gap: 0.3rem;
+  padding-left: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.price {
+  display: flex;
+  gap: 0.4rem;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.cancel {
+  padding-top: 2rem;
+  padding-left: 1rem;
+}
+@media (max-width: 767.98px) {
+  .custom_width {
+    text-align: center;
+  }
+  .price {
+    justify-content: center;
+  }
+  .dates {
+    justify-content: center;
+  }
+}

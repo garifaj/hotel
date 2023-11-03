@@ -14,6 +14,7 @@ const Navbar = (props) => {
 
     props.setName("");
     props.setIsAdmin(false);
+    props.setId("");
   };
 
   if (!props.name) {
@@ -79,7 +80,7 @@ const Navbar = (props) => {
     menu = (
       <ul className="navbar-nav mx-auto">
         <li className="nav-item me-3">
-          <Link to="/users" className="nav-link">
+          <Link to="/mybookings" className="nav-link">
             My bookings
           </Link>
         </li>

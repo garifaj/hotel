@@ -50,7 +50,7 @@ const BookingWidget = (props) => {
       return;
     }
     alert("Booking made successfully");
-    navigate("/allbookings");
+    navigate("/mybookings");
   };
 
   useEffect(() => {

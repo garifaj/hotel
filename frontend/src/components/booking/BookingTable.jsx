@@ -23,10 +23,10 @@ const BookingTable = () => {
   };
 
   useEffect(() => {
-    fetchRooms();
+    fetchBookings();
   }, []);
 
-  const fetchRooms = async () => {
+  const fetchBookings = async () => {
     try {
       const response = await axios.get("http://localhost:8000/api/bookings");
       setBookings(response.data);
