@@ -5,7 +5,9 @@ import axios from "axios";
 import styles from "../blog/Blogs.module.css";
 
 const Blogs = () => {
-  const [blogs, setBlogs] = useState(null);
+  const [blogs, setBlogs] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [blogsPerPage] = useState(3);
   const navigate = useNavigate();
 
   const loadEdit = (id) => {
@@ -38,6 +40,15 @@ const Blogs = () => {
       console.error(error);
     }
   };
+
+  const indexOfLastBooking = currentPage * blogsPerPage;
+  const indexOfFirstBooking = indexOfLastBooking - blogsPerPage;
+  const currentBlogs =
+    blogs && blogs.slice(indexOfFirstBooking, indexOfLastBooking);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
   return (
     <div className={styles.container_room}>
       <div className="card">
@@ -63,8 +74,8 @@ const Blogs = () => {
                 </tr>
               </thead>
               <tbody>
-                {blogs &&
-                  blogs.map((item) => (
+                {currentBlogs &&
+                  currentBlogs.map((item) => (
                     <tr key={item.id}>
                       <td>{item.id}</td>
                       <td style={{ maxWidth: "10rem" }}>{item.title}</td>
@@ -104,6 +115,30 @@ const Blogs = () => {
                     </tr>
                   ))}
               </tbody>
+              <tfoot>
+                <tr>
+                  <td colSpan="7">
+                    {Math.ceil(blogs.length / blogsPerPage) > 1 && (
+                      <ul className="pagination justify-content-center ">
+                        {[
+                          ...Array(
+                            Math.ceil(blogs.length / blogsPerPage)
+                          ).keys(),
+                        ].map((number) => (
+                          <li key={number + 1} className="page-item">
+                            <a
+                              onClick={() => paginate(number + 1)}
+                              className="page-link"
+                            >
+                              {number + 1}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </td>
+                </tr>
+              </tfoot>
             </table>
           </div>
         </div>

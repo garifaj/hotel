@@ -5,7 +5,9 @@ import axios from "axios";
 import styles from "../room/Rooms.module.css";
 
 const Rooms = () => {
-  const [rooms, setRooms] = useState(null);
+  const [rooms, setRooms] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [roomsPerPage] = useState(4);
   const navigate = useNavigate();
 
   const loadEdit = (id) => {
@@ -38,6 +40,14 @@ const Rooms = () => {
       console.error(error);
     }
   };
+
+  const indexOfLastRoom = currentPage * roomsPerPage;
+  const indexOfFirstRoom = indexOfLastRoom - roomsPerPage;
+  const currentRooms = rooms && rooms.slice(indexOfFirstRoom, indexOfLastRoom);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
   return (
     <div className={styles.container_room}>
       <div className="card">
@@ -64,12 +74,12 @@ const Rooms = () => {
                 </tr>
               </thead>
               <tbody>
-                {rooms &&
-                  rooms.map((item) => (
+                {currentRooms &&
+                  currentRooms.map((item) => (
                     <tr key={item.id}>
                       <td>{item.id}</td>
                       <td>{item.title}</td>
-                      <td>{item.roomNumber}</td>
+                      <td style={{ textAlign: "center" }}>{item.roomNumber}</td>
 
                       <td>
                         <div
@@ -107,6 +117,30 @@ const Rooms = () => {
                     </tr>
                   ))}
               </tbody>
+              <tfoot>
+                <tr>
+                  <td colSpan="7">
+                    {Math.ceil(rooms.length / roomsPerPage) > 1 && (
+                      <ul className="pagination justify-content-center ">
+                        {[
+                          ...Array(
+                            Math.ceil(rooms.length / roomsPerPage)
+                          ).keys(),
+                        ].map((number) => (
+                          <li key={number + 1} className="page-item ">
+                            <a
+                              onClick={() => paginate(number + 1)}
+                              className="page-link"
+                            >
+                              {number + 1}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </td>
+                </tr>
+              </tfoot>
             </table>
           </div>
         </div>

@@ -54,7 +54,6 @@ function App() {
       />
       <main>
         <Routes>
-          <Route path="/" element={<Home />} />
           {isAdmin && (
             <>
               <Route path="/rooms" element={<Rooms />} />
@@ -71,6 +70,7 @@ function App() {
               <Route path="allbookings" element={<BookingTable />} />
             </>
           )}
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login setName={setName} />} />
           <Route path="/signup" element={<Signup />} />{" "}
           <Route

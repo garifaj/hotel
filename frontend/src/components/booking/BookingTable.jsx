@@ -5,7 +5,9 @@ import axios from "axios";
 import styles from "../booking/BookingTable.module.css";
 
 const BookingTable = () => {
-  const [bookings, setBookings] = useState(null);
+  const [bookings, setBookings] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [bookingsPerPage] = useState(7);
 
   const removeFunction = (id) => {
     if (window.confirm("Do you want to delete this room?")) {
@@ -25,6 +27,15 @@ const BookingTable = () => {
   useEffect(() => {
     fetchBookings();
   }, []);
+
+  const indexOfLastBooking = currentPage * bookingsPerPage;
+  const indexOfFirstBooking = indexOfLastBooking - bookingsPerPage;
+  const currentBookings =
+    bookings && bookings.slice(indexOfFirstBooking, indexOfLastBooking);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   const fetchBookings = async () => {
     try {
@@ -57,8 +68,8 @@ const BookingTable = () => {
                 </tr>
               </thead>
               <tbody>
-                {bookings &&
-                  bookings.map((item) => (
+                {currentBookings &&
+                  currentBookings.map((item) => (
                     <tr key={item.id}>
                       <td>{item.id}</td>
                       <td>{item.userId}</td>
@@ -88,6 +99,30 @@ const BookingTable = () => {
                     </tr>
                   ))}
               </tbody>
+              <tfoot>
+                <tr>
+                  <td colSpan="7">
+                    {Math.ceil(bookings.length / bookingsPerPage) > 1 && (
+                      <ul className="pagination justify-content-center ">
+                        {[
+                          ...Array(
+                            Math.ceil(bookings.length / bookingsPerPage)
+                          ).keys(),
+                        ].map((number) => (
+                          <li key={number + 1} className="page-item">
+                            <a
+                              onClick={() => paginate(number + 1)}
+                              className="page-link"
+                            >
+                              {number + 1}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </td>
+                </tr>
+              </tfoot>
             </table>
           </div>
         </div>
