@@ -1,5 +1,6 @@
 .room_img {
   width: 100%;
+  object-fit: cover;
 }
 .title h4 {
   padding-left: 1rem;

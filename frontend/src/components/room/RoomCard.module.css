@@ -78,6 +78,7 @@
 }
 .room .text span.per {
   color: #b3b3b3;
+  font-weight: 400;
 }
 .room .text .btn_custom {
   color: #009dff;

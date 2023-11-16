@@ -3,6 +3,7 @@ import styles from "../booking/BookingWidget.module.css";
 import axios from "axios";
 import { differenceInCalendarDays } from "date-fns";
 import { Link, useNavigate } from "react-router-dom";
+import DisabledBooking from "./DisabledBooking";
 
 const BookingWidget = (props) => {
   const { name, room } = props;
@@ -26,6 +27,14 @@ const BookingWidget = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const checkInDate = new Date(checkIn);
+    const checkOutDate = new Date(checkOut);
+
+    if (checkOutDate <= checkInDate) {
+      setError("Checkout date must be after the check-in date.");
+      return;
+    }
     const bookingData = {
       checkIn,
       checkOut,
@@ -44,8 +53,8 @@ const BookingWidget = (props) => {
       credentials: "include",
     });
     if (!response.ok) {
-      const responseData = await response.json();
-      const errorMessage = responseData.message;
+      const data = await response.json();
+      const errorMessage = data.message;
       setError(errorMessage); // Set the error message
       return;
     }
@@ -66,73 +75,14 @@ const BookingWidget = (props) => {
       </div>
       {isBookingDisabled ? (
         <>
-          <form onSubmit={handleSubmit}>
-            <fieldset disabled>
-              <div className="card" style={{ textAlign: "left" }}>
-                <div className="card-body">
-                  <div className="row">
-                    <div className="col-lg-6">
-                      <div className={styles.form_group}>
-                        <label>Check in</label>
-                        <input type="date" className="form-control"></input>
-                      </div>
-                    </div>
-                    <div className="col-lg-6">
-                      <div className={styles.form_group}>
-                        <label>Check out</label>
-                        <input type="date" className="form-control"></input>
-                      </div>
-                    </div>
-                    <div className="col-lg-12">
-                      <div className={styles.form_group}>
-                        <label>Full name</label>
-                        <input
-                          type="text"
-                          placeholder="Enter name"
-                          className="form-control "
-                        ></input>
-                      </div>
-                    </div>
-                    <div className="col-lg-12">
-                      <div className={styles.form_group}>
-                        <label>Phone number</label>
-                        <input
-                          type="tel"
-                          placeholder="Phone number"
-                          className="form-control"
-                        ></input>
-                      </div>
-                    </div>
-                    <div className="d-grid gap-2 mt-3">
-                      <button
-                        className="btn"
-                        type="submit"
-                        style={{ background: "#009dff", color: "#fff" }}
-                      >
-                        Book this place
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div className="text-start ms-3 fs-6 mb-2">
-                  Do you want to book this room?{" "}
-                  <Link
-                    to="/login"
-                    style={{ textDecoration: "none", color: "#009dff" }}
-                  >
-                    Login
-                  </Link>
-                </div>
-              </div>
-            </fieldset>
-          </form>
+          <DisabledBooking />
         </>
       ) : (
         <form onSubmit={handleSubmit}>
           {error && (
             <div
               className="text-danger mb-2 text-center"
-              style={{ fontSize: "15px" }}
+              style={{ fontSize: "14px" }}
             >
               {error}
             </div>
@@ -140,7 +90,7 @@ const BookingWidget = (props) => {
           <div className="card" style={{ textAlign: "left" }}>
             <div className="card-body">
               <div className="row">
-                <div className="col-lg-6">
+                <div className="col-sm-6 col-md-6 col-lg-6">
                   <div className={styles.form_group}>
                     <label>Check in</label>
                     <input
@@ -152,7 +102,7 @@ const BookingWidget = (props) => {
                     ></input>
                   </div>
                 </div>
-                <div className="col-lg-6">
+                <div className="col-sm-6 col-md-6 col-lg-6">
                   <div className={styles.form_group}>
                     <label>Check out</label>
                     <input

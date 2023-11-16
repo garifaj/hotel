@@ -103,7 +103,7 @@ const MyBookings = (props) => {
         </li>
       ) : (
         <div className="container">
-          <p>You have no bookings.</p>
+          <h6>You have no bookings.</h6>
         </div>
       )}
     </>
