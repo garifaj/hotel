@@ -14,11 +14,11 @@ const Blogs = () => {
     navigate("/blogs/edit/" + id);
   };
   const removeFunction = (id) => {
-    if (window.confirm("Do you want to delete this room?")) {
+    if (window.confirm("Do you want to delete this blog?")) {
       fetch("http://localhost:8000/api/blogs/" + id, {
         method: "DELETE",
       })
-        .then((res) => {
+        .then(() => {
           alert("Removed successfully.");
           window.location.reload();
         })
@@ -67,6 +67,7 @@ const Blogs = () => {
                 <tr>
                   <td>ID</td>
                   <td>Title</td>
+                  <td>Author</td>
                   <td>Summary</td>
                   <td>Content</td>
                   <td>Image</td>
@@ -79,6 +80,7 @@ const Blogs = () => {
                     <tr key={item.id}>
                       <td>{item.id}</td>
                       <td style={{ maxWidth: "10rem" }}>{item.title}</td>
+                      <td style={{ maxWidth: "10rem" }}>{item.author}</td>
                       <td style={{ maxWidth: "15rem" }}>{item.summary}</td>
 
                       <td>

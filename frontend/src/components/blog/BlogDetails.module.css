@@ -4,7 +4,9 @@
 
 .title {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding-top: 2rem;
 }
 
@@ -16,8 +18,19 @@
   text-align: center;
 }
 
+.author {
+  text-align: center;
+  font-size: 13px;
+  font-weight: lighter;
+  padding-top: 0.5rem;
+}
+
+.author svg {
+  margin-bottom: 3px;
+}
+
 .image {
-  margin: 3rem 0rem;
+  margin: 0.5rem 0rem 3rem 0rem;
   display: block;
   height: 500px;
 }

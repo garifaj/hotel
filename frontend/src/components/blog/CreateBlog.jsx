@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./CreateBlog.module.css";
 import "react-quill/dist/quill.snow.css";
 import Editor from "../room/Editor";
-const CreateBlog = () => {
+const CreateBlog = (props) => {
+  const { name } = props;
   const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
   const [summary, setSummary] = useState("");
   const [image, setImage] = useState("");
@@ -14,12 +16,13 @@ const CreateBlog = () => {
 
   const handlesubmit = (e) => {
     e.preventDefault();
-    const blogdata = { title, content, summary, image };
+    const blogdata = { title, author, content, summary, image };
 
     fetch("http://localhost:8000/api/blogs/", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(blogdata),
+      credentials: include,
     })
       .then(() => {
         alert("Saved successfully.");
@@ -45,6 +48,12 @@ const CreateBlog = () => {
         setImage(data);
       });
   };
+
+  useEffect(() => {
+    if (name) {
+      setAuthor(name);
+    }
+  }, [name]);
   return (
     <>
       <div className={styles.container_room}>
@@ -65,6 +74,20 @@ const CreateBlog = () => {
                           placeholder="Enter blog title"
                           value={title}
                           onChange={(e) => setTitle(e.target.value)}
+                          className="form-control"
+                          required
+                        ></input>
+                      </div>
+                    </div>
+
+                    <div className="col-lg-12">
+                      <div className={styles.form_group}>
+                        <label>Author</label>
+                        <input
+                          type="text"
+                          placeholder="Enter blog title"
+                          value={author}
+                          onChange={(e) => setAuthor(e.target.value)}
                           className="form-control"
                           required
                         ></input>

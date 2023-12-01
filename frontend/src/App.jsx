@@ -61,7 +61,10 @@ function App() {
               <Route path="/rooms/edit/:roomid" element={<EditRoom />} />
 
               <Route path="/blogs" element={<Blogs />} />
-              <Route path="/blogs/create" element={<CreateBlog />} />
+              <Route
+                path="/blogs/create"
+                element={<CreateBlog name={name} />}
+              />
               <Route path="/blogs/edit/:blogid" element={<EditBlog />} />
 
               <Route path="/users" element={<Users />} />

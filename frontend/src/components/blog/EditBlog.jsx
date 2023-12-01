@@ -10,6 +10,7 @@ const EditBlog = () => {
   const navigate = useNavigate();
   const [id, setId] = useState("");
   const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
   const [summary, setSummary] = useState("");
   const [image, setImage] = useState("");
@@ -20,7 +21,7 @@ const EditBlog = () => {
       const data = await response.json();
       setId(data.id);
       setTitle(data.title);
-
+      setAuthor(data.author);
       setContent(data.content);
       setSummary(data.summary);
       setImage(data.image);
@@ -35,7 +36,7 @@ const EditBlog = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const blogdata = { id, title, content, summary, image };
+    const blogdata = { id, title, author, content, summary, image };
 
     fetch("http://localhost:8000/api/blogs/" + blogid, {
       method: "PUT",
@@ -100,6 +101,20 @@ const EditBlog = () => {
                           placeholder="Enter blog title"
                           value={title}
                           onChange={(e) => setTitle(e.target.value)}
+                          className="form-control"
+                          required
+                        ></input>
+                      </div>
+                    </div>
+
+                    <div className="col-lg-12">
+                      <div className={styles.form_group}>
+                        <label>Author</label>
+                        <input
+                          type="text"
+                          placeholder="Enter name"
+                          value={author}
+                          onChange={(e) => setAuthor(e.target.value)}
                           className="form-control"
                           required
                         ></input>
