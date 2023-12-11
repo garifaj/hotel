@@ -55,7 +55,6 @@ body {
 }
 
 .wrapper .btn {
-  box-shadow: none;
   width: 100%;
   height: 40px;
   background-color: #009dff;

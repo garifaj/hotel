@@ -1,45 +1,47 @@
-import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Rooms from "./components/room/Rooms";
-import Users from "./components/user/Users";
-import CreateRoom from "./components/room/CreateRoom";
-import EditRoom from "./components/room/EditRoom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import EditUser from "./components/user/EditUser";
-import CreateUser from "./components/user/CreateUser";
+import React from "react";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Home from "./components/Home";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import { useEffect, useState } from "react";
-import Home from "./components/Home";
-import RoomDetails from "./components/room/RoomDetails";
+import Rooms from "./components/room/Rooms";
+import CreateRoom from "./components/room/CreateRoom";
+import EditRoom from "./components/room/EditRoom";
+import Users from "./components/user/Users";
+import CreateUser from "./components/user/CreateUser";
+import EditUser from "./components/user/EditUser";
 import Blogs from "./components/blog/Blogs";
 import CreateBlog from "./components/blog/CreateBlog";
 import EditBlog from "./components/blog/EditBlog";
 import BlogDetails from "./components/blog/BlogDetails";
+import RoomDetails from "./components/room/RoomDetails";
 import BookingTable from "./components/booking/BookingTable";
 import MyBookings from "./components/booking/MyBookings";
+import { useEffect, useState } from "react";
+import UnauthorizedError from "./components/UnauthorizedError";
+import { setDate } from "date-fns";
 
 function App() {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
-  const fetchUserData = async () => {
-    const response = await fetch("http://localhost:8000/api/user", {
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      setName(data.name);
-      setIsAdmin(data.isAdmin);
-      setId(data.id);
-    }
-  };
 
   useEffect(() => {
     // Fetch user data when the component mounts and when authentication changes
+    const fetchUserData = async () => {
+      const response = await fetch("http://localhost:8000/api/user", {
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setName(data.name);
+        setIsAdmin(data.isAdmin);
+        setId(data.id);
+      }
+    };
+
     fetchUserData();
   }, [name, isAdmin, id]);
 
@@ -70,12 +72,13 @@ function App() {
               <Route path="/users" element={<Users />} />
               <Route path="/users/edit/:userid" element={<EditUser />} />
               <Route path="/users/create" element={<CreateUser />} />
-              <Route path="allbookings" element={<BookingTable />} />
+              <Route path="/allbookings" element={<BookingTable />} />
             </>
           )}
+          {!isAdmin && <Route path="/*" element={<UnauthorizedError />} />}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login setName={setName} />} />
-          <Route path="/signup" element={<Signup />} />{" "}
+          <Route path="/signup" element={<Signup />} />
           <Route
             path="/rooms/details/:roomid"
             element={<RoomDetails name={name} />}

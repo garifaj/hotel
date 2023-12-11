@@ -33,8 +33,14 @@ const MyBookings = (props) => {
           ))}
         </li>
       ) : (
-        <div className="container">
-          <h6>You have no bookings.</h6>
+        <div
+          className="container"
+          style={{ textAlign: "center", marginTop: "2rem" }}
+        >
+          <h6 style={{ color: "#1f1f1f", fontSize: "18px" }}>
+            You have no bookings yet. Start exploring and book your favorite
+            rooms!
+          </h6>
         </div>
       )}
     </>
