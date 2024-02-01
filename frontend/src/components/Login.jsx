@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styles from "../components/Login.module.css";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = ({ setUser }) => {
@@ -35,38 +34,88 @@ const Login = ({ setUser }) => {
   };
 
   return (
-    <div>
-      <div className={styles.wrapper}>
-        <div className={`text-center mt-4 ${styles.name}`}>Welcome</div>
-        <form className="p-3 mt-3" onSubmit={submit}>
-          {error && <div className="text-danger mb-3 ">{error}</div>}
-          <div className={`${styles.form_field} d-flex align-items-center`}>
-            <span className={`${styles.fas} fa-user`}></span>
-            <input
-              type="email"
-              placeholder="Email"
-              required
-              onChange={(e) => setEmail(e.target.value)}
-            />
+    <>
+      <section>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-sm-6 text-black">
+              <div className="d-flex align-items-center justify-content-center  mt-5 pt-5 ">
+                <form style={{ width: "23rem" }} onSubmit={submit}>
+                  <h3
+                    className="fw-normal mb-3 pb-3"
+                    style={{ letterSpacing: "0.5px" }}
+                  >
+                    Sign in
+                  </h3>
+                  {error && <div className="text-danger mb-3 ">{error}</div>}
+
+                  <div className="form-outline mb-3">
+                    <input
+                      type="email"
+                      required
+                      onChange={(e) => setEmail(e.target.value)}
+                      id="form2Example18"
+                      className="form-control form-control-lg"
+                    />
+                    <label className="form-label pt-1" htmlFor="form2Example18">
+                      Email address
+                    </label>
+                  </div>
+
+                  <div className="form-outline mb-3">
+                    <input
+                      type="password"
+                      required
+                      onChange={(e) => setPassword(e.target.value)}
+                      id="form2Example28"
+                      className="form-control form-control-lg"
+                    />
+                    <label className="form-label pt-1" htmlFor="form2Example28">
+                      Password
+                    </label>
+                  </div>
+
+                  <div className="pt-3 mb-4">
+                    <button
+                      className="btn btn-lg w-100"
+                      style={{ backgroundColor: "#009dff", color: "white" }}
+                      type="submit"
+                      onMouseEnter={(e) =>
+                        (e.target.style.backgroundColor = "#007ecc")
+                      }
+                      onMouseLeave={(e) =>
+                        (e.target.style.backgroundColor = "#009dff")
+                      }
+                    >
+                      Login
+                    </button>
+                  </div>
+
+                  <p>
+                    Don't have an account?{" "}
+                    <Link
+                      to="/signup"
+                      className="link-info"
+                      style={{ textDecoration: "none" }}
+                    >
+                      Sign up
+                    </Link>
+                  </p>
+                </form>
+              </div>
+            </div>
+            <div className="col-sm-6 px-0 d-none d-sm-block">
+              <img
+                src="http://localhost:8000/Photos/login3.png"
+                alt="Login image"
+                className="w-100 vh-100"
+                style={{ objectFit: "cover", filter: "brightness(0.95)" }}
+              />
+            </div>
           </div>
-          <div className={`${styles.form_field} d-flex align-items-center`}>
-            <span className={`${styles.fas} fa-key`}></span>
-            <input
-              type="password"
-              placeholder="Password"
-              required
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <button className={`${styles.btn} mt-3`} type="submit">
-            Login
-          </button>
-        </form>
-        <div className="text-start ms-3 fs-6">
-          Don't have an account? <Link to="/signup">Sign up</Link>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 };
 
