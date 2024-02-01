@@ -35,7 +35,7 @@ const EditUser = () => {
       headers: { "content-type": "application/json" },
       body: JSON.stringify(userdata),
     })
-      .then((res) => {
+      .then(() => {
         alert("Edited user successfully.");
         navigate("/users");
       })
@@ -45,7 +45,7 @@ const EditUser = () => {
   };
 
   return (
-    <div>
+    <>
       <div className={styles.container_room}>
         <div className="row">
           <div className="offset-lg-3 col-lg-6">
@@ -128,7 +128,7 @@ const EditUser = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

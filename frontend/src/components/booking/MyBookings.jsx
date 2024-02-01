@@ -3,7 +3,7 @@ import axios from "axios";
 
 import MyBookingCard from "./MyBookingCard";
 
-const MyBookings = (props) => {
+const MyBookings = ({ user }) => {
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
@@ -13,14 +13,14 @@ const MyBookings = (props) => {
       .then((response) => {
         // Filter bookings by userId
         const userBookings = response.data.filter(
-          (booking) => booking.userId === props.id
+          (booking) => booking.userId === user.id
         );
         setBookings(userBookings);
       })
       .catch((error) => {
         console.error("Error fetching bookings:", error);
       });
-  }, [props.id]);
+  }, [user.id]);
 
   return (
     <>

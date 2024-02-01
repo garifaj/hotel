@@ -40,6 +40,7 @@
 .room .img {
   display: block;
   height: 250px;
+  overflow: hidden;
 }
 .room .text {
   border: 1px solid #e6e6e6;
@@ -88,4 +89,9 @@
 .room_img {
   height: 250px;
   width: 100%;
+  transition: 0.5s all;
+}
+
+.room_img:hover {
+  transform: scale(1.1);
 }

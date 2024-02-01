@@ -7,7 +7,8 @@ import styles from "../user/Users.module.css";
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [usersPerPage] = useState(7);
+  const [search, setSearch] = useState("");
+  const usersPerPage = 7;
   const navigate = useNavigate();
 
   const loadEdit = (id) => {
@@ -29,26 +30,34 @@ const Users = () => {
   };
 
   useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/api/users");
+        setUsers(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
     fetchUsers();
   }, []);
 
-  const fetchUsers = async () => {
-    try {
-      const response = await axios.get("http://localhost:8000/api/users");
-      setUsers(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const filteredUsers = users.filter((user) => {
+    return (
+      user.name.toLowerCase().includes(search.toLowerCase()) ||
+      user.email.toLowerCase().includes(search.toLowerCase())
+    );
+  });
 
   const indexOfLastBooking = currentPage * usersPerPage;
   const indexOfFirstBooking = indexOfLastBooking - usersPerPage;
   const currentUsers =
-    users && users.slice(indexOfFirstBooking, indexOfLastBooking);
+    filteredUsers &&
+    filteredUsers.slice(indexOfFirstBooking, indexOfLastBooking);
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
   return (
     <div className={styles.container_room}>
       <div className="card">
@@ -60,6 +69,17 @@ const Users = () => {
             <Link to="create" id="#createbutton" className="btn btn-success">
               Add New +
             </Link>
+          </div>
+          <div className="mb-3">
+            <input
+              type="text"
+              placeholder="Search users..."
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+              className="form-control"
+            />
           </div>
           <div className="table-responsive">
             <table className="table table-bordered">
@@ -73,7 +93,16 @@ const Users = () => {
                 </tr>
               </thead>
               <tbody>
-                {currentUsers &&
+                {currentUsers.length === 0 ? (
+                  <tr>
+                    <td
+                      colSpan="5"
+                      style={{ textAlign: "center", fontSize: "25px" }}
+                    >
+                      No users found!
+                    </td>
+                  </tr>
+                ) : (
                   currentUsers.map((item) => (
                     <tr key={item.id}>
                       <td>{item.id}</td>
@@ -99,16 +128,17 @@ const Users = () => {
                         </a>
                       </td>
                     </tr>
-                  ))}
+                  ))
+                )}
               </tbody>
               <tfoot>
                 <tr>
-                  <td colSpan="7">
-                    {Math.ceil(users.length / usersPerPage) > 1 && (
+                  <td colSpan="5">
+                    {Math.ceil(filteredUsers.length / usersPerPage) > 1 && (
                       <ul className="pagination justify-content-center ">
                         {[
                           ...Array(
-                            Math.ceil(users.length / usersPerPage)
+                            Math.ceil(filteredUsers.length / usersPerPage)
                           ).keys(),
                         ].map((number) => (
                           <li key={number + 1} className="page-item">

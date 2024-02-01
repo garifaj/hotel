@@ -6,7 +6,7 @@ import Footer from "../Footer";
 import BookingWidget from "../booking/BookingWidget";
 
 const RoomDetails = (props) => {
-  const { name } = props;
+  const { user } = props;
   const [room, setRoom] = useState(null);
   const { roomid } = useParams();
 
@@ -64,7 +64,7 @@ const RoomDetails = (props) => {
                 </div>
               </div>
               <div className="col-lg-4">
-                <BookingWidget name={name} room={room} />
+                <BookingWidget user={user} room={room} />
               </div>
             </div>
           </div>

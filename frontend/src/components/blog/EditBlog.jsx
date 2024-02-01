@@ -72,7 +72,7 @@ const EditBlog = () => {
   };
 
   return (
-    <div>
+    <>
       <div className={styles.container_room}>
         <div className="row">
           <div className="offset-lg-3 col-lg-6">
@@ -185,7 +185,7 @@ const EditBlog = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

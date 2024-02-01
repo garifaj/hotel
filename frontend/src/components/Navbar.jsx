@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styles from "./Navbar.module.css";
 
-const Navbar = (props) => {
+const Navbar = ({ user, setUser }) => {
   let authButtons;
   let menu;
 
@@ -12,15 +13,13 @@ const Navbar = (props) => {
       credentials: "include",
     });
 
-    props.setName("");
-    props.setIsAdmin(false);
-    props.setId("");
+    setUser({ id: "", name: "", isAdmin: false });
   };
 
-  if (!props.name) {
+  if (!user.name) {
     authButtons = (
       <div className="ml-auto d-flex flex-column flex-md-row">
-        <Link to="/signup" className="btn btn-transparent">
+        <Link to="/signup" id={styles.navbtn} className="btn btn-transparent">
           Sign up
         </Link>
         <Link
@@ -42,7 +41,12 @@ const Navbar = (props) => {
       <div className="ml-auto d-flex flex-column flex-md-row">
         <ul className="navbar-nav mx-auto mb-2 ">
           <li className="nav-item active">
-            <Link to="/login" className="nav-link" onClick={logout}>
+            <Link
+              to="/login"
+              className="nav-link"
+              onClick={logout}
+              id={styles.navbtn}
+            >
               Logout
             </Link>
           </li>
@@ -51,26 +55,26 @@ const Navbar = (props) => {
     );
   }
 
-  if (props.isAdmin) {
+  if (user.isAdmin) {
     menu = (
       <ul className="navbar-nav mx-auto" style={{ alignItems: "center" }}>
         <li className="nav-item me-3">
-          <Link to="/rooms" className="nav-link">
+          <Link to="/rooms" className="nav-link" id={styles.navbtn}>
             Rooms
           </Link>
         </li>
         <li className="nav-item me-3">
-          <Link to="/users" className="nav-link">
+          <Link to="/users" className="nav-link" id={styles.navbtn}>
             Users
           </Link>
         </li>
         <li className="nav-item me-3">
-          <Link to="/blogs" className="nav-link">
+          <Link to="/blogs" className="nav-link" id={styles.navbtn}>
             Blogs
           </Link>
         </li>
         <li className="nav-item me-3">
-          <Link to="/allbookings" className="nav-link">
+          <Link to="/allbookings" className="nav-link" id={styles.navbtn}>
             Bookings
           </Link>
         </li>
@@ -80,7 +84,7 @@ const Navbar = (props) => {
     menu = (
       <ul className="navbar-nav mx-auto">
         <li className="nav-item me-3">
-          <Link to="/mybookings" className="nav-link">
+          <Link to="/mybookings" className="nav-link" id={styles.navbtn}>
             My bookings
           </Link>
         </li>
@@ -91,7 +95,11 @@ const Navbar = (props) => {
   return (
     <nav className="navbar navbar-expand-md bg-body-tertiary border-bottom pb-2">
       <div className="container">
-        <Link to="/" className="navbar-brand mt-1">
+        <Link
+          to="/"
+          className="navbar-brand mt-1"
+          style={{ fontWeight: "400" }}
+        >
           Hotel System
         </Link>
 

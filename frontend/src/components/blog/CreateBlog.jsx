@@ -5,7 +5,7 @@ import styles from "./CreateBlog.module.css";
 import "react-quill/dist/quill.snow.css";
 import Editor from "../room/Editor";
 const CreateBlog = (props) => {
-  const { name } = props;
+  const { user } = props;
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
@@ -50,10 +50,10 @@ const CreateBlog = (props) => {
   };
 
   useEffect(() => {
-    if (name) {
-      setAuthor(name);
+    if (user.name) {
+      setAuthor(user.name);
     }
-  }, [name]);
+  }, [user.name]);
   return (
     <>
       <div className={styles.container_room}>

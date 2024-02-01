@@ -6,14 +6,14 @@ import { Link, useNavigate } from "react-router-dom";
 import DisabledBooking from "./DisabledBooking";
 
 const BookingWidget = (props) => {
-  const { name, room } = props;
+  const { user, room } = props;
 
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
-  const isBookingDisabled = !name;
+  const isBookingDisabled = !user.name;
 
   const navigate = useNavigate();
 
@@ -63,10 +63,10 @@ const BookingWidget = (props) => {
   };
 
   useEffect(() => {
-    if (name) {
-      setFullName(name);
+    if (user.name) {
+      setFullName(user.name);
     }
-  }, [name]);
+  }, [user.name]);
 
   return (
     <>

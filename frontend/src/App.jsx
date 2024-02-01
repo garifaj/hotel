@@ -19,12 +19,13 @@ import BookingTable from "./components/booking/BookingTable";
 import MyBookings from "./components/booking/MyBookings";
 import { useEffect, useState } from "react";
 import UnauthorizedError from "./components/UnauthorizedError";
-import { setDate } from "date-fns";
 
 function App() {
-  const [id, setId] = useState("");
-  const [name, setName] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [user, setUser] = useState({
+    id: "",
+    name: "",
+    isAdmin: false,
+  });
 
   useEffect(() => {
     // Fetch user data when the component mounts and when authentication changes
@@ -36,27 +37,23 @@ function App() {
 
       if (response.ok) {
         const data = await response.json();
-        setName(data.name);
-        setIsAdmin(data.isAdmin);
-        setId(data.id);
+        setUser({
+          id: data.id,
+          name: data.name,
+          isAdmin: data.isAdmin,
+        });
       }
     };
 
     fetchUserData();
-  }, [name, isAdmin, id]);
+  }, [user.id, user.name, user.isAdmin]);
 
   return (
     <BrowserRouter>
-      <Navbar
-        name={name}
-        setName={setName}
-        isAdmin={isAdmin}
-        setIsAdmin={setIsAdmin}
-        setId={setId}
-      />
+      <Navbar user={user} setUser={setUser} />
       <main>
         <Routes>
-          {isAdmin && (
+          {user.isAdmin && (
             <>
               <Route path="/rooms" element={<Rooms />} />
               <Route path="/rooms/create" element={<CreateRoom />} />
@@ -65,7 +62,7 @@ function App() {
               <Route path="/blogs" element={<Blogs />} />
               <Route
                 path="/blogs/create"
-                element={<CreateBlog name={name} />}
+                element={<CreateBlog user={user} />}
               />
               <Route path="/blogs/edit/:blogid" element={<EditBlog />} />
 
@@ -75,16 +72,16 @@ function App() {
               <Route path="/allbookings" element={<BookingTable />} />
             </>
           )}
-          {!isAdmin && <Route path="/*" element={<UnauthorizedError />} />}
+          {!user.isAdmin && <Route path="/*" element={<UnauthorizedError />} />}
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login setName={setName} />} />
+          <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/signup" element={<Signup />} />
           <Route
             path="/rooms/details/:roomid"
-            element={<RoomDetails name={name} />}
+            element={<RoomDetails user={user} />}
           />
           <Route path="/blogs/details/:blogid" element={<BlogDetails />} />
-          <Route path="/mybookings" element={<MyBookings id={id} />} />
+          <Route path="/mybookings" element={<MyBookings user={user} />} />
         </Routes>
       </main>
     </BrowserRouter>

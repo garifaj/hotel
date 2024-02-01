@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "../components/Login.module.css";
 import { Link, useNavigate } from "react-router-dom";
 
-const Login = (props) => {
+const Login = ({ setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(""); // Add state for error message
@@ -30,8 +30,8 @@ const Login = (props) => {
     }
 
     const data = await response.json();
+    setUser({ id: data.id, name: data.name, isAdmin: data.isAdmin });
     navigate("/");
-    props.setName(data.name);
   };
 
   return (
