@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import styles from "../room/RoomDetails.module.css";
 import Footer from "../Footer";
 import BookingWidget from "../booking/BookingWidget";
+import Loading from "../Loading";
 
 const RoomDetails = (props) => {
   const { user } = props;
@@ -70,9 +71,7 @@ const RoomDetails = (props) => {
           </div>
         </section>
       ) : (
-        <div className="container">
-          <p>Loading...</p>
-        </div>
+        <Loading />
       )}
       <Footer />
     </>

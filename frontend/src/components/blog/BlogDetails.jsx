@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./BlogDetails.module.css";
 import Footer from "../Footer";
+import Loading from "../Loading";
 
 const BlogDetails = () => {
   const [blogs, setBlogs] = useState(null);
@@ -65,9 +66,7 @@ const BlogDetails = () => {
           </div>
         </section>
       ) : (
-        <div className="container">
-          <p>Loading...</p>
-        </div>
+        <Loading />
       )}
       <Footer />
     </>

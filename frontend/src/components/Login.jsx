@@ -35,7 +35,7 @@ const Login = ({ setUser }) => {
 
   return (
     <>
-      <section>
+      <section style={{ overflowY: "hidden", maxHeight: "calc(100vh - 61px)" }}>
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-6 text-black">

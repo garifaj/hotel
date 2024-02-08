@@ -3,14 +3,17 @@ import styles from "./BlogCard.module.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
+import Loading from "../Loading";
 
 const BlogCard = () => {
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchBlogs = async () => {
     try {
       const response = await axios.get("http://localhost:8000/api/blogs");
       setBlogs(response.data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -30,7 +33,9 @@ const BlogCard = () => {
             <h3>Our blogs</h3>
           </div>
           <div className="row flex-nowrap overflow-auto">
-            {blogs &&
+            {loading ? (
+              <Loading />
+            ) : (
               sortedBlogs.map((blog) => (
                 <div
                   className={`col-sm-8 col-md-6 col-lg-4 ftco-animate fadeInUp ftco-animated ${styles.custom_width}`}
@@ -57,7 +62,8 @@ const BlogCard = () => {
                     </div>
                   </div>
                 </div>
-              ))}
+              ))
+            )}
           </div>
         </div>
       </section>

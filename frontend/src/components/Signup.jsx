@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styles from "../components/Signup.module.css";
 import { Link, useNavigate } from "react-router-dom";
 const Signup = () => {
   const [name, setName] = useState("");
@@ -23,7 +22,7 @@ const Signup = () => {
 
   return (
     <>
-      <section>
+      <section style={{ overflowY: "hidden", maxHeight: "calc(100vh - 61px)" }}>
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-6 text-black">

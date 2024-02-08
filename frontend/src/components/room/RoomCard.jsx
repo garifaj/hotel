@@ -3,14 +3,17 @@ import styles from "../room/RoomCard.module.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
+import Loading from "../Loading";
 
 const RoomCard = () => {
   const [rooms, setRooms] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const fetchRooms = async () => {
     try {
       const response = await axios.get("http://localhost:8000/api/room");
       setRooms(response.data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -28,7 +31,9 @@ const RoomCard = () => {
             <h3>Our rooms</h3>
           </div>
           <div className="row">
-            {rooms &&
+            {loading ? (
+              <Loading />
+            ) : (
               rooms.map((room) => (
                 <div
                   className="cols-sm col-md-6 col-lg-4 ftco-animate fadeInUp ftco-animated"
@@ -71,7 +76,8 @@ const RoomCard = () => {
                     </div>
                   </div>
                 </div>
-              ))}
+              ))
+            )}
           </div>
         </div>
       </section>
